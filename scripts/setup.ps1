@@ -32,16 +32,18 @@ if (!(Test-Path "backend\.env")) {
     Write-Host "✅ backend/.env already exists" -ForegroundColor Green
 }
 
-if (!(Test-Path "frontend\.env")) {
+if (!(Test-Path "frontend\.env.local")) {
     @"
-REACT_APP_API_URL=http://localhost:5000/api
-REACT_APP_ENV=development
-REACT_APP_PAYFAST_MERCHANT_ID=your-payfast-merchant-id
-REACT_APP_ENABLE_2FA=true
-"@ | Out-File -FilePath "frontend\.env" -Encoding UTF8
-    Write-Host "✅ Created frontend/.env" -ForegroundColor Green
+VITE_API_URL=http://localhost:5000/api
+VITE_NODE_ENV=development
+VITE_PAYFAST_MERCHANT_ID=your-payfast-merchant-id
+VITE_ENABLE_2FA=true
+VITE_APP_NAME=Escrow Service Platform
+VITE_APP_VERSION=1.0.0
+"@ | Out-File -FilePath "frontend\.env.local" -Encoding UTF8
+    Write-Host "✅ Created frontend/.env.local" -ForegroundColor Green
 } else {
-    Write-Host "✅ frontend/.env already exists" -ForegroundColor Green
+    Write-Host "✅ frontend/.env.local already exists" -ForegroundColor Green
 }
 
 # Install backend dependencies
@@ -121,7 +123,7 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
 "@
 $frontendDockerfile | Out-File -FilePath "frontend\Dockerfile.dev" -Encoding UTF8
 
@@ -141,7 +143,7 @@ Start-Sleep -Seconds 3
 
 # Start frontend
 Write-Host "Starting frontend server..." -ForegroundColor Yellow
-Start-Process -FilePath "cmd" -ArgumentList "/c", "cd frontend && npm start" -WindowStyle Normal
+Start-Process -FilePath "cmd" -ArgumentList "/c", "cd frontend && npm run dev" -WindowStyle Normal
 
 Write-Host "🚀 Services starting..." -ForegroundColor Green
 Write-Host "Backend: http://localhost:5000" -ForegroundColor Cyan

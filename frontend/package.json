@@ -3,24 +3,30 @@
   "version": "1.0.0",
   "description": "Frontend React app for Escrow Service Platform",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write src/**/*.{ts,tsx,css,md}",
+    "type-check": "tsc --noEmit"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.39",
+    "@types/node": "^20.8.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4",
     "react-router-dom": "^6.14.2",
     "@reduxjs/toolkit": "^1.9.5",
     "react-redux": "^8.1.2",
-    "axios": "^1.4.0",
-    "react-query": "^3.39.3",
+    "axios": "^1.5.0",
+    "@tanstack/react-query": "^4.35.0",
     "@mui/material": "^5.14.1",
     "@mui/icons-material": "^5.14.1",
     "@emotion/react": "^11.11.1",
@@ -33,45 +39,26 @@
     "date-fns": "^2.30.0",
     "react-datepicker": "^4.16.0",
     "recharts": "^2.7.2",
-    "react-table": "^7.8.0",
+    "@tanstack/react-table": "^8.10.0",
     "framer-motion": "^10.12.18"
   },
   "devDependencies": {
-    "@types/react-table": "^7.7.14",
     "@types/react-datepicker": "^4.11.2",
-    "eslint": "^8.45.0",
-    "eslint-config-react-app": "^7.0.1",
-    "prettier": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
-    "@typescript-eslint/parser": "^6.2.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "format": "prettier --write src/**/*.{ts,tsx,css,md}",
-    "type-check": "tsc --noEmit"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "proxy": "http://localhost:5000"
+    "@typescript-eslint/parser": "^6.2.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vitest": "^0.34.0",
+    "@vitest/ui": "^0.34.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/jest-dom": "^6.1.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@tanstack/react-query-devtools": "^4.35.0",
+    "jsdom": "^22.1.0"
+  }
 }
